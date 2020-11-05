@@ -15,7 +15,8 @@ Kenzie assignment: Strings!
 
 # Your name, plus anyone who helped you with this assignment.
 # Give credit where credit is due.
-__author__ = "???"
+__author__ = """Jalon Dodson, research for format method:
+https://www.w3schools.com/python/ref_string_format.asp"""
 
 # A. donuts
 # Given an int count of a number of donuts, return a string
@@ -28,9 +29,11 @@ __author__ = "???"
 
 
 def donuts(count):
-    # your code here
-    return
-
+    if count >= 10:
+        return "Number of donuts: many"
+    else:
+        str = "Number of donuts: {count}"
+        return str.format(count=count)
 
 # B. both_ends
 # Given a string s, return a string made of the first 2
@@ -42,8 +45,10 @@ def donuts(count):
 
 
 def both_ends(s):
-    # your code here
-    return
+    if len(s) > 2:
+        return s[0:2] + s[-2:]
+    else:
+        return ""
 
 
 # C. fix_start
@@ -58,8 +63,8 @@ def both_ends(s):
 
 
 def fix_start(s):
-    # your code here
-    return
+    new_str = s[1:].replace(s[0], "*")
+    return s[0] + new_str
 
 
 # D. mix_up
@@ -73,9 +78,9 @@ def fix_start(s):
 
 
 def mix_up(a, b):
-    # your code here
-    return
-
+    new_a = a.replace(a[:2], b[:2])
+    new_b = b.replace(b[:2], a[:2])
+    return new_a + " " + new_b
 
 # E. verbing
 # Given a string, if its length is at least 3, add 'ing' to its
@@ -86,8 +91,13 @@ def mix_up(a, b):
 
 
 def verbing(s):
-    # your code here
-    return
+    if len(s) >= 3:
+        if s[-3:] == "ing":
+            return s + "ly"
+        else:
+            return s + "ing"
+    else:
+        return s
 
 
 # F. not_bad
@@ -100,8 +110,12 @@ def verbing(s):
 
 
 def not_bad(s):
-    # your code here
-    return
+    s_not = s.find("not")
+    bad = s.find("bad")
+    if "not" in s and bad > s_not:
+        return s.replace(s[s_not:bad + 3], "good")
+    else:
+        return s
 
 
 # G. front_back
@@ -115,5 +129,18 @@ def not_bad(s):
 
 
 def front_back(a, b):
-    # your code here
-    return
+    if len(a) % 2 == 0:
+        a_front = a[:len(a) // 2]
+        a_back = a[len(a) // 2:]
+    else:
+        a_front = a[:len(a) // 2 + 1]
+        a_back = a[len(a) // 2 + 1:]
+
+    if len(b) % 2 == 0:
+        b_front = b[:len(b) // 2]
+        b_back = b[len(b) // 2:]
+    else:
+        b_front = b[:len(b) // 2 + 1]
+        b_back = b[len(b) // 2 + 1:]
+
+    return a_front + b_front + a_back + b_back
